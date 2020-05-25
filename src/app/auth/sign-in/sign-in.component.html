@@ -1,0 +1,33 @@
+<h3>Sign In</h3>
+
+<form (ngSubmit)="onFormSubmit()"
+      [formGroup]="signupForm"
+      class="ui form"
+>
+
+  <app-input [control]="signupForm.get('username')"
+             inputType="text"
+             label="Username">
+  </app-input>
+
+  <app-input [control]="signupForm.get('password')"
+             inputType="password"
+             label="Password">
+  </app-input>
+
+  <div *ngIf="signupForm.errors" class="ui red basic label">
+    <p *ngIf="signupForm.errors.credentials">
+      Invalid username or Password.
+    </p>
+
+    <p *ngIf="signupForm.errors.noConnection">
+      No Internet Connection.
+    </p>
+
+  </div>
+
+  <div>
+    <button class="ui submit button primary">Submit</button>
+  </div>
+
+</form>
