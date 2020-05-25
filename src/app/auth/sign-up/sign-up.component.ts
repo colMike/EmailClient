@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatchPassword} from '../validators/match-password';
 import {UniqueUsername} from '../validators/unique-username';
 import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -38,7 +39,8 @@ export class SignUpComponent implements OnInit {
   constructor(
     private matchPassword: MatchPassword,
     private checkUniqueUName: UniqueUsername,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
   }
 
@@ -53,6 +55,7 @@ export class SignUpComponent implements OnInit {
     this.authService.signup(this.authForm.value)
       .subscribe((response) => {
         console.log(response.username);
+        this.router.navigateByUrl('/inbox');
       });
   }
 }
